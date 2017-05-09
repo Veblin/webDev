@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "target": "es5",
+    "jsx": "react",
+    "module": "es2015", // for Vue
+    "moduleResolution": "node", // for Vue
+    "allowSyntheticDefaultImports": true, // for Vue
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.promise"
+    ]
+    // "types" : ["node", "lodash", "express"]
+  },
+
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*"
+  ]
+}
