@@ -1,11 +1,16 @@
 <template>
-  <div id="app">
-    <h1></h1>
-    <h2>Shibor</h2>
+  <div class="appModule">
+    <input v-model="msg">
+    <p>prop: {{propMessage}}</p>
+    <p>msg: {{msg}}</p>
+    <p>helloMsg: {{helloMsg}}</p>
+    <p>computed msg: {{computedMsg}}</p>
+    <button @click="greet">Greet</button>
   </div>
 </template>
 
-<script>
+
+<script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
 @Component({
@@ -13,19 +18,30 @@ import Component from 'vue-class-component'
     propMessage: String
   }
 })
-
 export default class App extends Vue {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
+  propMessage: string
+  // inital data
+  msg: number = 123
+  // use prop values for initial data
+  helloMsg: string = 'Hello, ' + this.propMessage
+  // lifecycle hook
+  mounted () {
+    this.greet()
+  }
+  // computed
+  get computedMsg () {
+    return 'computed ' + this.msg
+  }
+  // method
+  greet () {
+    console.log('greeting: ' + this.msg)
   }
 }
 </script>
 
+
 <style>
-#app {
+.appModule {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

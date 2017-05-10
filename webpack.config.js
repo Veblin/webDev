@@ -17,7 +17,7 @@ module.exports = {
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    extensions: [".ts", ".tsx", ".js", ".json", ".vue"],
     alias: {
       'vue$': 'vue/dist/vue.common.js'
     }
@@ -25,17 +25,23 @@ module.exports = {
   devtool: '#eval-source-map',
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'. Change to ts-loader because of when import .vue modules has Error
       {
         test: /\.tsx?$/,
-        loader: "awesome-typescript-loader"
+        loader: "ts-loader",
+        exclude: /node_modules|vue\/src/,
+        options:{
+           appendTsSuffixTo: [/\.vue$/]
+        }
       },
       //vue loader
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-          loaders: {}
+          loaders: {
+            esModule: true
+          }
           // other vue-loader options go here
         }
       },
