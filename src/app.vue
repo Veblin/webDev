@@ -7,12 +7,15 @@
     <p>computed msg: {{computedMsg}}</p>
     <button @click="greet">Greet</button>
   </div>
+  <!--<chartLine></chartLine>-->
 </template>
 
 
 <script lang="ts">
 import Vue from 'vue'
 import Component from 'vue-class-component'
+//import Charts from './components/chartsLine.vue'
+
 @Component({
   props: {
     propMessage: String
@@ -34,8 +37,12 @@ export default class App extends Vue {
   }
   // method
   greet () {
+     let opt = {
+       color:'red'
+     }
     console.log('greeting: ' + this.msg)
   }
+
 }
 </script>
 

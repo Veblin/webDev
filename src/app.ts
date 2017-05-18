@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './app.vue'
-
-// import './styles/style.scss' //load styles
+// import Charts from './components/chartsLine.vue'
+import './styles/style.scss' //load styles
 // mount
 new Vue({
   el: '#app',
@@ -9,3 +9,10 @@ new Vue({
     props: { propMessage: 'World' }
   })
 })
+// new Vue({
+//     el: '#app',
+//   components: {
+//     demo: Charts
+//   },
+//   render: h => h(Charts)
+// })

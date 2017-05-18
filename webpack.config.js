@@ -2,11 +2,6 @@
 var path = require('path')
 var webpack = require('webpack')
 
-const {
-  CheckerPlugin
-} = require('awesome-typescript-loader')
-
-
 
 module.exports = {
   entry: './src/app.ts',
@@ -23,13 +18,18 @@ module.exports = {
     }
   },
   devtool: '#eval-source-map',
+
   module: {
     rules: [
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'. Change to ts-loader because of when import .vue modules has Error
       {
         test: /\.tsx?$/,
         loader: "ts-loader",
-        exclude: /node_modules|vue\/src/,
+        exclude: /node_modules/,
+         //include:[
+           //path.resolve('src'),
+           //path.resolve('node_modules/vue-echarts')
+         //],
         options:{
            appendTsSuffixTo: [/\.vue$/]
         }
@@ -45,7 +45,7 @@ module.exports = {
           // other vue-loader options go here
         }
       },
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      // All output '.js' files will have any sourcemap s re-processed by 'source-map-loader'.
       {
         enforce: "pre",
         test: /\.js$/,
@@ -65,11 +65,23 @@ module.exports = {
     ]
   },
   plugins: [
-    new CheckerPlugin()
+
+    function() {
+      //输出 打包状态的json
+      this.plugin("done", function(stats) {
+        require("fs").writeFileSync(
+          path.join(__dirname, "build", "stats.json"),
+          JSON.stringify(stats.toJson()));
+      });
+    }
   ]
 }
 
 if (process.env.NODE_ENV === 'production') {
+  module.exports.performance= {
+    // 性能监测
+    hints: "error"
+  },
   module.exports.devtool = '#source-map'
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
