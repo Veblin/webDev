@@ -26,10 +26,6 @@ module.exports = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/,
-         //include:[
-           //path.resolve('src'),
-           //path.resolve('node_modules/vue-echarts')
-         //],
         options:{
            appendTsSuffixTo: [/\.vue$/]
         }

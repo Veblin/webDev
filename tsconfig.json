@@ -13,10 +13,14 @@
       "dom",
       "es5",
       "es2015.promise"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "vue-echarts": ["node_modules/vue-echart"]
+    }
     // "types" : ["node", "lodash", "express"]
   },
-  "files":[
+  "files": [
     "index.d.ts"
   ],
   "exclude": [
